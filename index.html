@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#B12A34">
+    
+    <title>Compo</title>
+
+    <link rel="manifest" href="compo.webmanifest">
+    <link href="./styles.css" rel="stylesheet"/>
+
+    <script src="./main.js" defer>
+    </script>
+
+    <script src="./components/base64.js" defer></script>
+    <script src="./components/sha.js" defer></script>
+    <script src="./components/html-viewer.js" defer></script>
+  </head>
+  <body>
+    <div id="root">
+      <header style="position: sticky; top: 0;">
+        <nav class="navbar">
+          <ul class="dkx-list navbar-items-list">
+            <li class="navbar-items-list-item">
+              <a class="product-logo" href="javascrip:void(0)"></a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main class="workspace">
+        <section class="tools">
+          <ul class="dkx-list tools-list">
+            <li class="tools-list-item">
+              <a href="#base64" style="white-space: nowrap;">
+                Base64 Encode/Decode
+              </a>
+            </li>
+            <li class="tools-list-item">
+              <a href="#sha" style="white-space: nowrap;">
+                SHA
+              </a>
+            </li>
+            <li class="tools-list-item">
+              <a href="#html-viewer" style="white-space: nowrap;">
+                HTML Viewer
+              </a>
+            </li>
+          </ul>
+        </section>
+        <section class="tools-content">
+          <compo-base64></compo-base64>
+          <compo-sha></compo-sha>
+          <compo-html-viewer></compo-html-viewer>
+        </section>
+      </main>
+      <footer>
+      </footer>
+    </div>
+  </body>
+
+  <template id="component-base64">
+    <div style="display: flex; flex-direction: column;">
+      <h1 style="text-align: center;">Base64 Strings</h1>
+      <fieldset style="display: flex; flex-direction: column;">Encode/Decode
+        <label for="base64-input">
+          Input data
+        </label>
+        <input id="input-field-element" name="base64-input" type="text" value=""/>
+        <label for="base64-output">
+          Output data
+        </label>
+        <input id="output-field-element" name="base64-output" type="text" value=""/>
+      </fieldset>
+      <fieldset style="display: flex; flex-direction: column;">Base64URL Encode/Decode
+        <label for="base64-url-input">
+          Input data
+        </label>
+        <input id="base64-url-input" name="base64-url-input" type="text" value=""/>
+        <label for="base64-url-output">
+          Output data
+        </label>
+        <input id="base64-url-output" name="base64-url-output" type="text" value=""/>
+      </fieldset>
+      <fieldset style="display: flex; flex-direction: column;">File encode
+        <label for="base64-input-file">
+          File upload
+        </label>
+        <input id="base64-input-file" name="base64-input-file" type="file" value=""/>
+        <label for="base64-output-file">
+          Output
+        </label>
+        <input id="base64-output-file" name="base64-output-file" type="text" value=""/>
+      </fieldset>
+    </div>
+  </template>
+
+  <template id="component-sha">
+    <div style="display: flex; flex-direction: column;">
+      <h1 style="text-align: center;">SHA</h1>
+      <fieldset style="display: flex; flex-direction: column;">SHA
+        <label for="select-sha-algorithm">Select SHA Algorithm</label>
+        <select id="select-sha-algorithm" name="select-sha-algorithm" selected="SHA-512">
+          <option value="SHA-1">SHA-1</option>
+          <option value="SHA-256">SHA-256</option>
+          <option value="SHA-384">SHA-384</option>
+          <option value="SHA-512">SHA-512</option>
+        </select>
+        <label for="sha-input">Input</label>
+        <input id="sha-input" name="sha-input" type="text" value=""/>
+        <label for="sha-output">Output</label>
+        <input id="sha-output" name="sha-input" type="text" value="" disabled/>
+      </fieldset>
+    </div>
+  </template>
+
+  <template id="component-html-viewer">
+    <div style="display: flex; flex-direction: column; height: 100%">
+      <h1 style="text-align: center;">HTML Viewer</h1>
+      <div class="split">
+        <textarea id="html-viewer-src">
+        </textarea>
+        <iframe id="html-viewer-iframe"></iframe>
+      </div>
+    </div>
+    <style>
+      .split {
+          display: flex;
+          flex-direction: row;
+          flex-grow: 1;
+      }
+      .split * {
+          flex-basis: 0.5;
+          flex-grow: 1;
+      }
+
+      textarea {
+          min-height: 100%;
+          margin: 0;
+          box-sizing: border-box;
+      }
+    </style>
+  </template>
+</html>
